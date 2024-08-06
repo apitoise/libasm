@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
 
 extern size_t	ft_strlen(const char *str);
 extern char		*ft_strcpy(char *dst, const char *src);
 extern int		ft_strcmp(const char *s1, const char *s2);
+extern ssize_t	ft_write(int fd, const void *buff, size_t count);
 
 #define	MAX_LEN	4096
 
@@ -14,6 +17,7 @@ static int	exit_error(const char *str) {
 
 int			main(int ac, char **argv) {
 	char	dst[MAX_LEN];
+	char	buff[MAX_LEN];
 	char	*ft_ret, *real_ret;
 	char	*bad_str = "imabadstring";
 	char	*empty_str = "";
@@ -35,6 +39,8 @@ int			main(int ac, char **argv) {
 	printf("bad strcmp: %i\n", strcmp(ft_ret, bad_str));
 	printf("empty ft_strcmp: %i\n", ft_strcmp(ft_ret, empty_str));
 	printf("empty strcmp: %i\n", strcmp(ft_ret, empty_str));
-
+	printf("\n\n#### WRITE ####\n\n");
+	ft_write(1, buff, ft_strlen(buff));
+	write(1, buff, strlen(buff));
 	return (0);
 }
