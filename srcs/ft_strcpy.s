@@ -1,17 +1,19 @@
 global	ft_strcpy
 
 ft_strcpy:
-	xor	rsi,			rsi				; size_t	i = 0
+	xor	rcx,			rcx				; size_t	i = 0
 
 .loop:
-	cmp	byte[rdi+rsi],	0				; if (src[i] == '\0')
+	cmp	byte[rsi+rcx],	0				; if (src[i] == '\0')
 	je	.done							; jump to .done func
-	mov	byte[rax+rsi], byte[rdi+rsi]	; dst[i] = src[i]
-	inc	rsi								; i++
+	mov	r8b,			byte[rsi+rcx]	;
+	mov	byte[rdi+rcx],	r8b				; dst[i] = src[i]
+	inc	rcx								; i++
 	jmp	.loop							; jump to .loop func
 
-.done:
-	mov	byte[rax+rsi], 0				; dst[i] = '\0'
+.done:	
+	mov	byte[rdi+rcx],	0				; dst[i] = '\0'
+	mov	rax,			rdi				; set return value
 	ret									; return dst
 
 ;	char	*strcpy(char *dest, const char *src) {
