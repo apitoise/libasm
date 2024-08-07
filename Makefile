@@ -26,7 +26,7 @@ clean:
 	rm -rf $(ASM_OBJS) main.o
 
 fclean: clean
-	rm -rf $(NAME) test
+	rm -rf $(NAME) test ft_write_fd write_fd
 
 re: fclean all
 
