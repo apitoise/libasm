@@ -11,6 +11,7 @@ extern char		*ft_strcpy(char *dst, const char *src);
 extern int		ft_strcmp(const char *s1, const char *s2);
 extern ssize_t	ft_write(int fd, const void *buff, size_t count);
 extern ssize_t	ft_read(int fd, void *buff, size_t count);
+extern char		*ft_strdup(char *str);
 
 #define	MAX_LEN	4096
 
@@ -25,6 +26,7 @@ int			main(int ac, char **argv) {
 	char	*ft_ret, *real_ret;
 	char	*bad_str = "imabadstring";
 	char	*empty_str = "";
+	char	*ft_dup, *dup;
 	int		ret = 0;
 
 	if (ac != 2)
@@ -130,6 +132,16 @@ int			main(int ac, char **argv) {
 	ret = read(4242, buff, MAX_LEN);
 	printf("read_result: %d | %s", ret, buff);
 	printf("\nErrno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
+
+	printf("\n\n#### STRDUP ####\n\n");
+
 	errno = 0;
+	ft_dup = ft_strdup(argv[1]);
+	printf("ft_strdup:\n%s\n", ft_dup);
+	printf("\nErrno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
+	errno = 0;
+	dup = strdup(argv[1]);
+	printf("strdup:\n%s\n", dup);
+	printf("\nErrno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	return (0);
 }
