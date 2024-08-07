@@ -2,6 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
@@ -52,24 +53,24 @@ int			main(int ac, char **argv) {
 	int ft_fd = open("ft_write_fd", O_APPEND | O_CREAT | O_WRONLY, 0644);
 	int fd = open("write_fd", O_APPEND | O_CREAT | O_WRONLY, 0644);
 
-	printf("Errno_value: %d\nErrno_str: %s\n", errno, strerror(errno));
+	printf("Errno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("ft_write stdout:\n");
 	ft_write(STDOUT_FILENO, argv[1], ft_strlen(argv[1]));
-	printf("\n");
+	printf("\nErrno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("write stdout:\n");
 	write(STDOUT_FILENO, argv[1], strlen(argv[1]));
-	printf("\n");
+	printf("\nErrno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("ft_write good fd:\n");
 	ft_write(ft_fd, argv[1], ft_strlen(argv[1]));
-	printf("\n");
+	printf("Errno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("write good fd:\n");
 	write(fd, argv[1], strlen(argv[1]));
-	printf("\n");
+	printf("Errno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("ft_write wrong fd:\n");
 	ft_write(4242, argv[1], ft_strlen(argv[1]));
-	printf("\n");
+	printf("Errno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	printf("write wrong fd:\n");
 	write(4242, argv[1], strlen(argv[1]));
-	printf("\n");
+	printf("Errno_value: %d\nErrno_str: %s\n\n", errno, strerror(errno));
 	return (0);
 }
