@@ -17,7 +17,7 @@ $(NAME):	$(ASM_OBJS)
 	nasm -f elf64 $< -o $@
 
 test:	main.o $(NAME)
-	$(CC) $(CFLAGS) -o $@ main.o -L. -lasm
+	$(CC) $(CFLAGS) -o $@ main.o -L. -lasm -z noexecstack
 
 test.o:	main.c
 	$(CC) $(CFLAGS) -c $< -o $@
