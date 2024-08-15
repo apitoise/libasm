@@ -21,6 +21,7 @@ ft_strdup:
 	mov		r8,				rax
 	neg		r8								; get absolute error value
 	mov		rdi,			rax				;
+	pop		rsi								; stack alignment
 	call	__errno_location wrt ..plt		;
 	mov		[rax],			r8				; set errno value
 	xor		rax,			rax				; set return value to NULL
