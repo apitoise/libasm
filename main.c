@@ -30,7 +30,7 @@ int			main(int ac, char **argv) {
 	int		ret = 0;
 
 	if (ac != 2)
-		return (exit_error("Need at least 1 arg"));
+		return (exit_error("Requires an argument, which will be used to run the tests"));
 
 	printf("#### STRLEN ####\n\n");
 
